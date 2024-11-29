@@ -24,7 +24,7 @@ public class Main {
                     // Agregar contacto
                     System.out.print("Ingrese nombre: ");
                     String nombre = scanner.nextLine();
-                    System.out.print("Ingrese teléfono: ");
+                    System.out.print("Ingrese telefono: ");
                     String telefono = scanner.nextLine();
                     System.out.print("Ingrese email: ");
                     String email = scanner.nextLine();
@@ -47,7 +47,7 @@ public class Main {
                     // Actualizar contacto
                     System.out.print("Ingrese el nombre del contacto a actualizar: ");
                     String nombreActualizar = scanner.nextLine();
-                    System.out.print("Ingrese el nuevo teléfono: ");
+                    System.out.print("Ingrese el nuevo telefono: ");
                     String nuevoTelefono = scanner.nextLine();
                     System.out.print("Ingrese el nuevo email: ");
                     String nuevoEmail = scanner.nextLine();
@@ -62,7 +62,7 @@ public class Main {
                     break;
 
                 case 5:
-                    // Mostrar ficha técnica
+                    // Mostrar ficha tecnica
                     agenda.mostrarFichaTecnica();
                     break;
 
