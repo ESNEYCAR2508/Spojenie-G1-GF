@@ -22,7 +22,7 @@
   - La clase utiliza un ArrayList para almacenar los contactos, lo que permite un manejo dinámico
     del tamaño de la lista.
   - Las validaciones de correo electrónico se realizan mediante expresiones regulares.
- */
+ **/
 
 import java.util.ArrayList;
 import java.util.Scanner;
