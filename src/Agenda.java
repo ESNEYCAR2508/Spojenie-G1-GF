@@ -79,7 +79,11 @@ public class Agenda {
 
 
     public void mostrarFichaTecnica() {
-        System.out.println("Equipo: [Nombres, roles, eslogan]");
+        System.out.println(  "👩‍💻 Natalia Niño\n" +
+                "👨‍💻 Bryant Cardoza\n" +
+                "👨‍💻 Jhoan Araque Jaimes\n" +
+                "👨‍💻 Deyson Carrillo\n" +
+                "🚀 \"Construyendo conexiones que transforman ideas en acciones.");
     }
 
 

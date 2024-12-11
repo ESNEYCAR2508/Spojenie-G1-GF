@@ -14,7 +14,7 @@ public class ContactApp {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Fondo personalizable
-        JLabel fondo = new JLabel(new ImageIcon("ruta/de/tu/imagen/fondo.jpg"));
+        JLabel fondo = new JLabel(new ImageIcon("C:/Users/Usuario/IdeaProjects/P/Spojenie-G1-GF/Required Files/Fondo.png"));
         fondo.setLayout(new BorderLayout());
         frame.setContentPane(fondo);
 
@@ -79,12 +79,12 @@ public class ContactApp {
         };
 
         // Estilos del botón circular
-        button.setFont(new Font("Arial", Font.BOLD, 14));
+        button.setFont(new Font("Arial", Font.BOLD, 18));
         button.setForeground(Color.WHITE);
         button.setFocusPainted(false);
         button.setBorderPainted(false);
         button.setContentAreaFilled(false);
-        button.setPreferredSize(new Dimension(120, 120)); // Tamaño del botón circular (más grande)
+        button.setPreferredSize(new Dimension(150, 150)); // Tamaño del botón circular (más grande)
         button.setHorizontalAlignment(SwingConstants.CENTER);
         button.setVerticalAlignment(SwingConstants.CENTER);
 
@@ -95,7 +95,7 @@ public class ContactApp {
     private static void colocarBotonesEnCirculo(JLayeredPane panel, JFrame frame) {
         int centerX = frame.getWidth() / 2;
         int centerY = frame.getHeight() / 2;
-        int radio = 200;
+        int radio = 250;
 
         JButton[] botones = new JButton[6];
         int[] angulos = {0, 60, 120, 180, 240, 300};
@@ -158,7 +158,7 @@ public class ContactApp {
 
 
     private static void mostrarFichaTecnica(JFrame frame) {
-        JOptionPane.showMessageDialog(frame, "Ficha técnica: \nDesarrollador: [Tu nombre]\nVersión: 1.0");
+        JOptionPane.showMessageDialog( frame,  "👩‍💻 Natalia Niño\n" + "👨‍💻 Bryant Cardoza\n" + "👨‍💻 Jhoan Araque Jaimes\n" + "👨‍💻 Deyson Carrillo\n" + "🚀Construyendo conexiones que transforman ideas en acciones.\n" + "Version 1.0");
     }
 
 
