@@ -23,13 +23,13 @@ public class ContactApp {
         fondo.add(layeredPane, BorderLayout.CENTER);
 
         // Crear botones personalizados con diferentes colores y añadir acción a cada uno
-        JButton agregarBtn = crearBotonCircular("Agregar", Color.MAGENTA, Color.BLACK);
+        JButton agregarBtn = crearBotonCircular("Agregar", Color.pink, Color.DARK_GRAY);
         agregarBtn.addActionListener(e -> agregarContacto(frame));
 
-        JButton buscarBtn = crearBotonCircular("Buscar", Color.BLUE, Color.BLACK);
+        JButton buscarBtn = crearBotonCircular("Buscar", Color.BLACK, Color.PINK);
         buscarBtn.addActionListener(e -> buscarContacto(frame));
 
-        JButton actualizarBtn = crearBotonCircular("Actualizar", Color.GREEN, Color.BLACK);
+        JButton actualizarBtn = crearBotonCircular("Actualizar", Color.PINK, Color.darkGray);
         actualizarBtn.addActionListener(e -> actualizarContacto(frame));
 
         JButton eliminarBtn = crearBotonCircular("Eliminar", Color.RED, Color.BLACK);
