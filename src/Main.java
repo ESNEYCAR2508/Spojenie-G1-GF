@@ -1,3 +1,24 @@
+/**
+ * Clase Main
+ -Esta clase contiene el punto de entrada principal de la aplicacion.
+ -Permite gestionar contactos mediante un menu de opciones.
+ -Los usuarios pueden agregar, buscar, actualizar, eliminar contactos y ver la informacion.
+
+ Funcionalidades principales:
+ -Agregar contacto:Solicita al usuario nombre, telefono y email para almacenar un nuevo contacto.
+ -Buscar contacto:Permite buscar contactos por nombre y muestra la informacion completa si se encuentra.
+ -Actualizar contacto:Solicita el nombre del contacto a actualizar junto con el nuevo telefono y email.
+ -Eliminar contacto:Solicita el nombre del contacto a eliminar de la lista.
+ -Mostrar ficha tecnica:Proporciona informacion del equipo de desarrollo.
+
+ Validaciones:
+ -El sistema asegura que las entradas del usuario sean consistentes.
+ -Se limpia el buffer despues de leer datos numericos para evitar problemas con la entrada de texto.
+
+ Detalles adicionales:
+ -Utiliza la clase Scanner para la entrada de datos.
+ -La ejecucion del programa se realiza en un bucle que termina al seleccionar la opcion de salir.
+ */
 import java.util.Scanner;
 
 public class Main {
