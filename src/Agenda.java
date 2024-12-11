@@ -1,4 +1,29 @@
 
+/**
+ * Clase Agenda
+ * Esta clase representa una agenda para la gestión de contactos personales.
+ * Ofrece diversas funcionalidades para añadir, buscar, actualizar y eliminar contactos.
+ * Además, incluye validaciones para evitar duplicados y asegurar que los correos electrónicos sean válidos.
+
+ * Funcionalidades principales:
+ * - **Agregar contactos**: Permite añadir contactos únicos verificando que el nombre no se repita
+ *   y que el email tenga un formato válido. Si se cumplen las condiciones, el contacto se almacena.
+ * - **Buscar contactos**: Permite localizar un contacto existente mediante su nombre, sin importar
+ *   mayúsculas o minúsculas.
+ * - **Actualizar información**: Facilita la modificación del teléfono y el email de un contacto existente.
+ * - **Eliminar contactos**: Permite remover un contacto de la lista utilizando su nombre como referencia.
+ * - **Ficha técnica**: Proporciona información del equipo que desarrolló la aplicación.
+
+ * Validaciones:
+ * - Los contactos deben tener nombres únicos dentro de la lista.
+ * - El formato del email debe seguir el estándar correcto (e.g., ejemplo@dominio.com).
+
+ * Detalles adicionales:
+ * - La clase utiliza un ArrayList para almacenar los contactos, lo que permite un manejo dinámico
+ *   del tamaño de la lista.
+ * - Las validaciones de correo electrónico se realizan mediante expresiones regulares.
+ */
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
