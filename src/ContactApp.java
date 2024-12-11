@@ -41,6 +41,10 @@ public class ContactApp {
         JButton salirBtn = crearBotonCircular("Salir", Color.PINK, Color.BLACK);
         salirBtn.addActionListener(e -> salirAplicacion());
 
+        JButton listarBtn = crearBotonCircular("contactos", Color.darkGray, Color.pink);
+        listarBtn.addActionListener(e -> listarContactos(frame));
+
+
         // Añadir botones al panel
         layeredPane.add(agregarBtn);
         layeredPane.add(buscarBtn);
@@ -48,6 +52,8 @@ public class ContactApp {
         layeredPane.add(eliminarBtn);
         layeredPane.add(acercaDeBtn);
         layeredPane.add(salirBtn);
+        layeredPane.add(listarBtn);
+
 
         // Evento para reposicionar los botones cuando se redimensiona la ventana
         frame.addComponentListener(new ComponentAdapter() {
@@ -97,8 +103,9 @@ public class ContactApp {
         int centerY = frame.getHeight() / 2;
         int radio = 250;
 
-        JButton[] botones = new JButton[6];
-        int[] angulos = {0, 60, 120, 180, 240, 300};
+        JButton[] botones = new JButton[7]; // Cambiar de 6 a 7
+        int[] angulos = {0, 51, 102, 153, 204, 255, 306}; // Ajustar ángulos para 7 botones
+
 
         for (int i = 0; i < panel.getComponentCount(); i++) {
             if (panel.getComponent(i) instanceof JButton) {
@@ -147,6 +154,20 @@ public class ContactApp {
             }
         }
     }
+
+
+    private static void listarContactos(JFrame frame) {
+        StringBuilder lista = new StringBuilder("Contactos:\n");
+        for (Contacto contacto : agenda.getContactos()) {
+            lista.append(contacto.toString()).append("\n");
+        }
+        if (lista.toString().equals("Contactos:\n")) {
+            JOptionPane.showMessageDialog(frame, "No hay contactos en la agenda.");
+        } else {
+            JOptionPane.showMessageDialog(frame, lista.toString());
+        }
+    }
+
 
 
     private static void eliminarContacto(JFrame frame) {

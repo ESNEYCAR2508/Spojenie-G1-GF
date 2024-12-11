@@ -67,6 +67,12 @@ public class Agenda {
     }
 
 
+    public ArrayList<Contacto> getContactos() {
+        return contactos;
+    }
+
+
+
     public void eliminarContacto(String nombre) {
         Contacto contacto = buscarContacto(nombre);
         if (contacto != null) {
