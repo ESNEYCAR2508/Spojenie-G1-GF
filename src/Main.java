@@ -1,5 +1,5 @@
 /**
- gitClase Main
+ Clase Main
  -Esta clase contiene el punto de entrada principal de la aplicacion.
  -Permite gestionar contactos mediante un menu de opciones.
  -Los usuarios pueden agregar, buscar, actualizar, eliminar contactos y ver la informacion.
