@@ -24,6 +24,7 @@
   - Las validaciones de correo electrónico se realizan mediante expresiones regulares.
  **/
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -33,6 +34,31 @@ public class Agenda {
     public Agenda() {
         contactos = new ArrayList<>();
     }
+
+    // Método para exportar contactos a un archivo
+    public void exportarContactos(String rutaArchivo) throws IOException {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(rutaArchivo))) {
+            for (Contacto contacto : contactos) {
+                writer.write(contacto.getNombre() + "," + contacto.getTelefono() + "," + contacto.getEmail());
+                writer.newLine();
+            }
+        }
+    }
+
+    // Método para importar contactos desde un archivo
+    public void importarContactos(String rutaArchivo) throws IOException {
+        try (BufferedReader reader = new BufferedReader(new FileReader(rutaArchivo))) {
+            String linea;
+            while ((linea = reader.readLine()) != null) {
+                String[] partes = linea.split(",");
+                if (partes.length == 3) {
+                    Contacto contacto = new Contacto(partes[0], partes[1], partes[2]);
+                    contactos.add(contacto);
+                }
+            }
+        }
+    }
+
 
 
     public void agregarContacto(Contacto contacto) {

@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.io.IOException;
 
 public class ContactApp {
     private static Agenda agenda = new Agenda();
@@ -22,7 +23,42 @@ public class ContactApp {
         JLayeredPane layeredPane = new JLayeredPane();
         fondo.add(layeredPane, BorderLayout.CENTER);
 
-        // Crear botones personalizados con diferentes colores y añadir acción a cada uno
+        // Crear botones adicionales
+        JButton importarButton = new JButton("Importar");
+        JButton exportarButton = new JButton("Exportar");
+
+        importarButton.setBounds(950, 100, 150, 50); // Posicionados en la parte inferior
+        exportarButton.setBounds(950, 600, 150, 50);
+
+        importarButton.addActionListener(e -> {
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setDialogTitle("Selecciona un archivo para importar contactos");
+            int result = fileChooser.showOpenDialog(frame);
+            if (result == JFileChooser.APPROVE_OPTION) {
+                try {
+                    agenda.importarContactos(fileChooser.getSelectedFile().getAbsolutePath());
+                    JOptionPane.showMessageDialog(frame, "Contactos importados con éxito.");
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(frame, "Error al importar contactos: " + ex.getMessage());
+                }
+            }
+        });
+
+        exportarButton.addActionListener(e -> {
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setDialogTitle("Selecciona dónde guardar los contactos");
+            int result = fileChooser.showSaveDialog(frame);
+            if (result == JFileChooser.APPROVE_OPTION) {
+                try {
+                    agenda.exportarContactos(fileChooser.getSelectedFile().getAbsolutePath());
+                    JOptionPane.showMessageDialog(frame, "Contactos exportados con éxito.");
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(frame, "Error al exportar contactos: " + ex.getMessage());
+                }
+            }
+        });
+
+        // Crear botones circulares
         JButton agregarBtn = crearBotonCircular("Agregar", Color.pink, Color.DARK_GRAY);
         agregarBtn.addActionListener(e -> agregarContacto(frame));
 
@@ -41,11 +77,12 @@ public class ContactApp {
         JButton salirBtn = crearBotonCircular("Salir", Color.PINK, Color.BLACK);
         salirBtn.addActionListener(e -> salirAplicacion());
 
-        JButton listarBtn = crearBotonCircular("contactos", Color.darkGray, Color.pink);
+        JButton listarBtn = crearBotonCircular("Contactos", Color.darkGray, Color.pink);
         listarBtn.addActionListener(e -> listarContactos(frame));
 
-
         // Añadir botones al panel
+        layeredPane.add(importarButton);
+        layeredPane.add(exportarButton);
         layeredPane.add(agregarBtn);
         layeredPane.add(buscarBtn);
         layeredPane.add(actualizarBtn);
@@ -53,7 +90,6 @@ public class ContactApp {
         layeredPane.add(acercaDeBtn);
         layeredPane.add(salirBtn);
         layeredPane.add(listarBtn);
-
 
         // Evento para reposicionar los botones cuando se redimensiona la ventana
         frame.addComponentListener(new ComponentAdapter() {
@@ -75,7 +111,6 @@ public class ContactApp {
                 Graphics2D g2 = (Graphics2D) g;
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-                // Fondo del botón circular con gradiente difuminado
                 GradientPaint gradient = new GradientPaint(0, 0, color1, getWidth(), getHeight(), color2);
                 g2.setPaint(gradient);
                 g2.fillOval(0, 0, getWidth(), getHeight());
@@ -84,13 +119,12 @@ public class ContactApp {
             }
         };
 
-        // Estilos del botón circular
         button.setFont(new Font("Arial", Font.BOLD, 18));
         button.setForeground(Color.WHITE);
         button.setFocusPainted(false);
         button.setBorderPainted(false);
         button.setContentAreaFilled(false);
-        button.setPreferredSize(new Dimension(150, 150)); // Tamaño del botón circular (más grande)
+        button.setPreferredSize(new Dimension(150, 150));
         button.setHorizontalAlignment(SwingConstants.CENTER);
         button.setVerticalAlignment(SwingConstants.CENTER);
 
@@ -103,20 +137,27 @@ public class ContactApp {
         int centerY = frame.getHeight() / 2;
         int radio = 250;
 
-        JButton[] botones = new JButton[7]; // Cambiar de 6 a 7
-        int[] angulos = {0, 51, 102, 153, 204, 255, 306}; // Ajustar ángulos para 7 botones
+        // Asegúrate de que estás accediendo a los botones correctos.
+        JButton[] botones = new JButton[]{
+                (JButton) panel.getComponent(2),
+                (JButton) panel.getComponent(3),
+                (JButton) panel.getComponent(4),
+                (JButton) panel.getComponent(5),
+                (JButton) panel.getComponent(6),
+                (JButton) panel.getComponent(7),
+                (JButton) panel.getComponent(8)
+        };
 
+        int[] angulos = {0, 51, 102, 153, 204, 255, 306};
 
-        for (int i = 0; i < panel.getComponentCount(); i++) {
-            if (panel.getComponent(i) instanceof JButton) {
-                botones[i] = (JButton) panel.getComponent(i);
-                int x = (int) (centerX + radio * Math.cos(Math.toRadians(angulos[i])) - botones[i].getPreferredSize().width / 2);
-                int y = (int) (centerY + radio * Math.sin(Math.toRadians(angulos[i])) - botones[i].getPreferredSize().height / 2);
+        for (int i = 0; i < botones.length; i++) {
+            int x = (int) (centerX + radio * Math.cos(Math.toRadians(angulos[i])) - botones[i].getPreferredSize().width / 2);
+            int y = (int) (centerY + radio * Math.sin(Math.toRadians(angulos[i])) - botones[i].getPreferredSize().height / 2);
 
-                botones[i].setBounds(x, y, botones[i].getPreferredSize().width, botones[i].getPreferredSize().height);
-            }
+            botones[i].setBounds(x, y, botones[i].getPreferredSize().width, botones[i].getPreferredSize().height);
         }
     }
+
 
     // Métodos para las acciones de cada botón
     private static void agregarContacto(JFrame frame) {
@@ -130,7 +171,6 @@ public class ContactApp {
         }
     }
 
-
     private static void buscarContacto(JFrame frame) {
         String nombre = JOptionPane.showInputDialog(frame, "Ingrese el nombre del contacto a buscar:");
         if (nombre != null) {
@@ -143,7 +183,6 @@ public class ContactApp {
         }
     }
 
-
     private static void actualizarContacto(JFrame frame) {
         String nombre = JOptionPane.showInputDialog(frame, "Ingrese el nombre del contacto a actualizar:");
         if (nombre != null) {
@@ -154,7 +193,6 @@ public class ContactApp {
             }
         }
     }
-
 
     private static void listarContactos(JFrame frame) {
         StringBuilder lista = new StringBuilder("Contactos:\n");
@@ -168,8 +206,6 @@ public class ContactApp {
         }
     }
 
-
-
     private static void eliminarContacto(JFrame frame) {
         String nombre = JOptionPane.showInputDialog(frame, "Ingrese el nombre del contacto a eliminar:");
         if (nombre != null) {
@@ -177,16 +213,18 @@ public class ContactApp {
         }
     }
 
-
     private static void mostrarFichaTecnica(JFrame frame) {
-        JOptionPane.showMessageDialog( frame,  "👩‍💻 Natalia Niño\n" + "👨‍💻 Bryant Cardoza\n" + "👨‍💻 Jhoan Araque Jaimes\n" + "👨‍💻 Deyson Carrillo\n" + "🚀Construyendo conexiones que transforman ideas en acciones.\n" + "Version 1.0");
+        JOptionPane.showMessageDialog(frame, "\uD83D\uDC69\u200D\uD83D\uDCBB Natalia Ni\u00f1o\n" +
+                "\uD83D\uDC68\u200D\uD83D\uDCBB Bryant Cardoza\n" +
+                "\uD83D\uDC68\u200D\uD83D\uDCBB Jhoan Araque Jaimes\n" +
+                "\uD83D\uDC68\u200D\uD83D\uDCBB Deyson Carrillo\n" +
+                "\uD83D\uDE80Construyendo conexiones que transforman ideas en acciones.\n" +
+                "Version 1.0");
     }
-
 
     private static void salirAplicacion() {
         System.exit(0);
     }
-
 }
 
 
