@@ -2,6 +2,9 @@
   <artifact type="jar" name="Spojenie-G1-GF:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/Spojenie_G1_GF_jar</output-path>
     <root id="archive" name="Spojenie-G1-GF.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/Required Files/META-INF/MANIFEST.MF" />
+      </element>
       <element id="module-output" name="Spojenie-G1-GF" />
     </root>
   </artifact>

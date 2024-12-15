@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Spojenie-G1-GF:jar2">
+    <output-path>$PROJECT_DIR$/out/production</output-path>
+    <root id="archive" name="Spojenie-G1-GF.jar">
+      <element id="module-output" name="Spojenie-G1-GF" />
+    </root>
+  </artifact>
+</component>
