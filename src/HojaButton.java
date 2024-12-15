@@ -1,3 +1,62 @@
+/**
+ * Clase HojaButton
+ *
+ * Resumen:
+ * Esta clase extiende `JButton` para crear un botón con forma de hoja y un diseño personalizado. Utiliza `Java2D` para dibujar
+ * la forma de la hoja y aplicar un gradiente de color.
+ *
+ * Requisitos:
+ * - Java Development Kit (JDK) 8 o superior.
+ * - Librerías estándar de Java (javax.swing, java.awt).
+ *
+ * Guía de Uso:
+ * - Cree una instancia de `HojaButton` pasando el texto del botón como parámetro.
+ * - Agregue el botón a un contenedor de Swing como cualquier otro componente.
+ *
+ * Ejemplo de Uso:
+ * <pre>
+ * HojaButton importarButton = new HojaButton("Importar");
+ * frame.add(importarButton);
+ * </pre>
+ *
+ * Estructura del Proyecto:
+ * - HojaButton: Clase personalizada que extiende `JButton` y sobrescribe el metodo paintComponent para dibujar la forma de la hoja.
+ *
+ * Manejo de Errores y Excepciones:
+ * - La clase no maneja errores específicos, ya que se basa en la funcionalidad estándar de `JButton`.
+ *
+ * Licencia:
+ * - Este código se distribuye bajo la licencia MIT.
+ *
+ * Notas adicionales:
+ * - La forma de la hoja se dibuja utilizando `GeneralPath` y se rellena con un gradiente de color.
+ * - El texto del botón se centra automáticamente dentro de la forma de la hoja.
+ */
+
+/**
+ * Librerías Importadas:
+ * - javax.swing.*: Proporciona clases para crear una interfaz gráfica de usuario (GUI) en Java.
+ * - java.awt.*: Proporciona clases para la creación de interfaces gráficas y manejo de eventos.
+ * - java.awt.geom.GeneralPath: Proporciona una clase para definir formas geométricas complejas.
+ */
+
+/**
+ * Constructor HojaButton:
+ * - Propósito: Crea un botón con forma de hoja y un diseño personalizado.
+ * - Parámetros: String text - El texto del botón.
+ * - Funcionamiento: Configura el botón para que no tenga área de contenido, enfoque ni borde pintado, y establece el tamaño preferido.
+ */
+
+/**
+ * Metodo paintComponent:
+ * - Propósito: Dibuja la forma de la hoja y el texto del botón.
+ * - Parámetros: Graphics g - El contexto gráfico.
+ * - Funcionamiento: Utiliza `Graphics2D` para dibujar la forma de la hoja con un gradiente de color y centra el texto del botón.
+ */
+
+
+
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.GeneralPath;

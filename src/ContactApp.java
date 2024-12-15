@@ -1,13 +1,160 @@
+/**
+ * Clase ContactApp
+ *
+ * Resumen:
+ * Esta clase representa la aplicación principal para la gestión de contactos. Proporciona una interfaz gráfica de usuario (GUI)
+ * para agregar, buscar, actualizar, eliminar, importar y exportar contactos. Utiliza la clase `Agenda` para manejar la lógica
+ * de gestión de contactos y la clase `HojaButton` para crear botones personalizados con forma de hoja. Además, permite mostrar
+ * una imagen circular en el centro del círculo formado por los botones.
+ *
+ * Requisitos:
+ * - Java Development Kit (JDK) 8 o superior.
+ * - Librerías estándar de Java (javax.swing, java.awt, java.io, javax.imageio).
+ *
+ * Instrucciones de Instalación:
+ * 1. Asegúrese de tener instalado JDK 8 o superior.
+ * 2. Compile las clases `ContactApp`, `Agenda`, `Contacto`, `HojaButton` y `ImageUtils`.
+ * 3. Ejecute la clase `ContactApp` para iniciar la aplicación.
+ *
+ * Guía de Uso:
+ * - Al iniciar la aplicación, se muestra una ventana con opciones para gestionar contactos.
+ * - Los usuarios pueden agregar, buscar, actualizar, eliminar contactos y ver la información del equipo de desarrollo.
+ * - Los botones de importar y exportar permiten manejar contactos desde y hacia archivos externos.
+ * - Una imagen circular se muestra en el centro del círculo formado por los botones.
+ *
+ * Estructura del Proyecto:
+ * - ContactApp: Clase principal que inicia la aplicación y configura la GUI.
+ * - Agenda: Clase que maneja la lógica de gestión de contactos.
+ * - Contacto: Clase que representa un contacto individual.
+ * - HojaButton: Clase personalizada para crear botones con forma de hoja.
+ * - ImageUtils: Clase utilitaria para manipular imágenes.
+ *
+ * Manejo de Errores y Excepciones:
+ * - La aplicación maneja errores de entrada del usuario y muestra mensajes de error apropiados usando `JOptionPane`.
+ * - Los errores de importación y exportación de archivos se manejan y se muestran mensajes de error específicos.
+ *
+ * Pruebas:
+ * - Asegúrese de probar todas las funcionalidades de la GUI, incluyendo agregar, buscar, actualizar, eliminar, importar y exportar contactos.
+ *
+ * Licencia:
+ * - Este código se distribuye bajo la licencia MIT.
+ *
+ * Contactos y Soporte:
+ * - Para soporte, contacte a los desarrolladores del proyecto.
+ *
+ * Notas adicionales:
+ * - La aplicación utiliza iconos predeterminados de Java Swing para los cuadros de diálogo.
+ * - Los botones de importar y exportar tienen una forma personalizada de hoja con un gradiente de color.
+ * - La imagen circular en el centro se escala y recorta utilizando la clase `ImageUtils`.
+ */
+
+/**
+ * Librerías Importadas:
+ * - javax.swing.*: Proporciona clases para crear una interfaz gráfica de usuario (GUI) en Java.
+ * - java.awt.*: Proporciona clases para la creación de interfaces gráficas y manejo de eventos.
+ * - java.awt.event.*: Proporciona clases para manejar eventos de la GUI.
+ * - java.awt.image.BufferedImage: Proporciona una clase para manejar imágenes en memoria.
+ * - java.io.*: Proporciona clases para la entrada y salida de datos, incluyendo la manipulación de archivos.
+ * - javax.imageio.ImageIO: Proporciona clases para leer y escribir imágenes.
+ */
+
+/**
+ * Dependencias:
+ * - Agenda: Clase que maneja la lógica de gestión de contactos.
+ * - Contacto: Clase que representa un contacto individual.
+ * - HojaButton: Clase personalizada para crear botones con forma de hoja.
+ * - ImageUtils: Clase utilitaria para manipular imágenes.
+ */
+
+/**
+ * Metodo Main:
+ * - Propósito: Punto de entrada principal de la aplicación. Configura la ventana principal y los componentes de la GUI.
+ * - Parámetros: String[] args - Argumentos de línea de comandos (no utilizados).
+ * - Funcionamiento: Configura la ventana principal, añade los componentes de la GUI y define las acciones de los botones.
+ */
+
+/**
+ * Metodo agregarContacto:
+ * - Propósito: Solicita al usuario los datos de un nuevo contacto y lo agrega a la agenda.
+ * - Parámetros: JFrame frame - La ventana principal de la aplicación.
+ * - Funcionamiento: Solicita el nombre, teléfono y correo electrónico del contacto. Valida los datos y agrega el contacto a la agenda.
+ */
+
+/**
+ * Metodo buscarContacto:
+ * - Propósito: Solicita al usuario el nombre de un contacto y muestra su información si existe.
+ * - Parámetros: JFrame frame - La ventana principal de la aplicación.
+ * - Funcionamiento: Solicita el nombre del contacto, lo busca en la agenda y muestra la información del contacto si se encuentra.
+ */
+
+/**
+ * Metodo actualizarContacto:
+ * - Propósito: Solicita al usuario el nombre de un contacto y los nuevos datos para actualizarlo.
+ * - Parámetros: JFrame frame - La ventana principal de la aplicación.
+ * - Funcionamiento: Solicita el nombre del contacto, verifica si existe, y luego solicita los nuevos datos para actualizar el contacto.
+ */
+
+/**
+ * Metodo eliminarContacto:
+ * - Propósito: Solicita al usuario el nombre de un contacto y lo elimina de la agenda si existe.
+ * - Parámetros: JFrame frame - La ventana principal de la aplicación.
+ * - Funcionamiento: Solicita el nombre del contacto, verifica si existe, y lo elimina de la agenda si se encuentra.
+ */
+
+/**
+ * Metodo mostrarFichaTecnica:
+ * - Propósito: Muestra la información del equipo de desarrollo.
+ * - Parámetros: JFrame frame - La ventana principal de la aplicación.
+ * - Funcionamiento: Muestra un cuadro de diálogo con la información del equipo de desarrollo.
+ */
+
+/**
+ * Metodo salirAplicacion:
+ * - Propósito: Cierra la aplicación.
+ * - Parámetros: Ninguno.
+ * - Funcionamiento: Llama a System.exit(0) para cerrar la aplicación.
+ */
+
+/**
+ * Metodo listarContactos:
+ * - Propósito: Muestra una lista de todos los contactos en la agenda.
+ * - Parámetros: JFrame frame - La ventana principal de la aplicación.
+ * - Funcionamiento: Recorre la lista de contactos y muestra la información de cada uno en un cuadro de diálogo.
+ */
+
+/**
+ * Metodo crearBotonCircular:
+ * - Propósito: Crea un botón circular con un gradiente de color.
+ * - Parámetros: String texto - El texto del botón.
+ *              Color color1 - El primer color del gradiente.
+ *              Color color2 - El segundo color del gradiente.
+ * - Funcionamiento: Sobrescribe el metodo paintComponent para dibujar un boton circular con un gradiente de color.
+ */
+
+/**
+ * Metodo colocarBotonesEnCirculo:
+ * - Propósito: Coloca los botones en un círculo alrededor del centro del panel.
+ * - Parámetros: JLayeredPane panel - El panel que contiene los botones.
+ *              JFrame frame - La ventana principal de la aplicación.
+ * - Funcionamiento: Calcula las posiciones de los botones y los coloca en un círculo alrededor del centro del panel.
+ */
+
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
+
 
 public class ContactApp {
     private static Agenda agenda = new Agenda();
+    private static BufferedImage circularImage;
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("Agenda de Contactos");
@@ -20,8 +167,26 @@ public class ContactApp {
         frame.setContentPane(fondo);
 
         // Crear el panel de botones y añadirlo al marco principal
-        JLayeredPane layeredPane = new JLayeredPane();
+        JLayeredPane layeredPane = new JLayeredPane() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                if (circularImage != null) {
+                    int x = (getWidth() - circularImage.getWidth()) / 2;
+                    int y = (getHeight() - circularImage.getHeight()) / 2;
+                    g.drawImage(circularImage, x, y, null);
+                }
+            }
+        };
         fondo.add(layeredPane, BorderLayout.CENTER);
+
+        try {
+            BufferedImage image = ImageIO.read(new File("C:/Users/Usuario/IdeaProjects/P/Spojenie-G1-GF/Required Files/fondo2.png"));
+            circularImage = ImageUtils.cropImageToCircle(image, 800); // Ajustar el tamaño de la imagen
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
         // Crear botones adicionales
         // Crear botones adicionales con la forma de hoja
@@ -60,13 +225,13 @@ public class ContactApp {
         });
 
         // Crear botones circulares
-        JButton agregarBtn = crearBotonCircular("Agregar", Color.pink, Color.DARK_GRAY);
+        JButton agregarBtn = crearBotonCircular("Agregar", Color.orange, Color.red);
         agregarBtn.addActionListener(e -> agregarContacto(frame));
 
-        JButton buscarBtn = crearBotonCircular("Buscar", Color.BLACK, Color.PINK);
+        JButton buscarBtn = crearBotonCircular("Buscar", Color.red, Color.orange);
         buscarBtn.addActionListener(e -> buscarContacto(frame));
 
-        JButton actualizarBtn = crearBotonCircular("Actualizar", Color.PINK, Color.darkGray);
+        JButton actualizarBtn = crearBotonCircular("Actualizar", Color.orange, Color.red);
         actualizarBtn.addActionListener(e -> actualizarContacto(frame));
 
         JButton eliminarBtn = crearBotonCircular("Eliminar", Color.RED, Color.BLACK);
@@ -75,10 +240,10 @@ public class ContactApp {
         JButton acercaDeBtn = crearBotonCircular("Acerca de", Color.LIGHT_GRAY, Color.BLACK);
         acercaDeBtn.addActionListener(e -> mostrarFichaTecnica(frame));
 
-        JButton salirBtn = crearBotonCircular("Salir", Color.PINK, Color.BLACK);
+        JButton salirBtn = crearBotonCircular("Salir", Color.red, Color.orange);
         salirBtn.addActionListener(e -> salirAplicacion());
 
-        JButton listarBtn = crearBotonCircular("Contactos", Color.darkGray, Color.pink);
+        JButton listarBtn = crearBotonCircular("Contactos", Color.orange, Color.red);
         listarBtn.addActionListener(e -> listarContactos(frame));
 
         // Añadir botones al panel
