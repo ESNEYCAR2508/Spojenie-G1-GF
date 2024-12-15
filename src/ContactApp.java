@@ -161,48 +161,53 @@ public class ContactApp {
 
     // Métodos para las acciones de cada botón
     private static void agregarContacto(JFrame frame) {
-        // Usar iconos predeterminados de Java Swing
         Icon nombreIcono = UIManager.getIcon("OptionPane.questionIcon");
         Icon telefonoIcono = UIManager.getIcon("OptionPane.informationIcon");
         Icon emailIcono = UIManager.getIcon("OptionPane.warningIcon");
 
-        // Pedir el nombre
         String nombre = (String) JOptionPane.showInputDialog(
                 frame,
                 "Ingrese el nombre del contacto:",
                 "Agregar - Nombre",
                 JOptionPane.PLAIN_MESSAGE,
-                nombreIcono, // Icono aquí
+                nombreIcono,
                 null,
                 null
         );
 
         if (nombre != null) {
-            // Pedir el teléfono
             String telefono = (String) JOptionPane.showInputDialog(
                     frame,
                     "Ingrese el teléfono del contacto:",
                     "Agregar - Teléfono",
                     JOptionPane.PLAIN_MESSAGE,
-                    telefonoIcono, // Icono aquí
+                    telefonoIcono,
                     null,
                     null
             );
 
             if (telefono != null) {
-                // Pedir el email
+                if (!telefono.matches("\\d{7,15}")) {
+                    JOptionPane.showMessageDialog(frame, "Número de teléfono inválido. Debe contener entre 7 y 15 dígitos.", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
                 String email = (String) JOptionPane.showInputDialog(
                         frame,
                         "Ingrese el email del contacto:",
                         "Agregar - Email",
                         JOptionPane.PLAIN_MESSAGE,
-                        emailIcono, // Icono aquí
+                        emailIcono,
                         null,
                         null
                 );
 
-                // Validar que todos los campos sean completados
                 if (email != null) {
+                    if (!email.matches("^[\\w-\\.]+@[\\w-]+(\\.[\\w-]{2,4})+$")) {
+                        JOptionPane.showMessageDialog(frame, "Email inválido.", "Error", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+
                     Contacto nuevo = new Contacto(nombre, telefono, email);
                     agenda.agregarContacto(nuevo);
                     JOptionPane.showMessageDialog(frame, "Contacto agregado con éxito.");

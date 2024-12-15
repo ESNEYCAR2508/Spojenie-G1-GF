@@ -50,7 +50,11 @@ public class Contacto {
     }
 
     public void setTelefono(String telefono) {
-        this.telefono = telefono;
+        if (telefono != null && telefono.matches("\\d{7,15}")) {
+            this.telefono = telefono;
+        } else {
+            throw new IllegalArgumentException("Número de teléfono inválido. Debe contener entre 7 y 15 dígitos.");
+        }
     }
 
     public void setEmail(String email) {
