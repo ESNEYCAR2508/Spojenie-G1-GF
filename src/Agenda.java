@@ -62,11 +62,11 @@ public class Agenda {
 
 
     public void agregarContacto(Contacto contacto) {
-        if (buscarContacto(contacto.getNombre()) == null && validarEmail(contacto.getEmail()) && validarTelefono(contacto.getTelefono())) {
+        if (buscarContacto(contacto.getNombre()) == null && validarEmail(contacto.getEmail())) {
             contactos.add(contacto);
             System.out.println("Contacto agregado exitosamente.");
         } else {
-            System.out.println("Contacto duplicado, email o teléfono inválido.");
+            System.out.println("Contacto duplicado o email inválido.");
         }
     }
 
@@ -124,7 +124,7 @@ public class Agenda {
 
 
     private boolean validarEmail(String email) {
-        return email.matches("^[\\w-\\.]+@[\\w-]+(\\.[\\w-]{2,4})+$");
+        return email.isEmpty() || email.matches("^[\\w-\\.]+@[\\w-]+(\\.[\\w-]{2,4})+$");
     }
 }
 

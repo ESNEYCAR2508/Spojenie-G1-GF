@@ -194,7 +194,7 @@ public class ContactApp {
 
                 String email = (String) JOptionPane.showInputDialog(
                         frame,
-                        "Ingrese el email del contacto:",
+                        "Ingrese el email del contacto (opcional):",
                         "Agregar - Email",
                         JOptionPane.PLAIN_MESSAGE,
                         emailIcono,
@@ -202,16 +202,17 @@ public class ContactApp {
                         null
                 );
 
-                if (email != null) {
-                    if (!email.matches("^[\\w-\\.]+@[\\w-]+(\\.[\\w-]{2,4})+$")) {
-                        JOptionPane.showMessageDialog(frame, "Email inválido.", "Error", JOptionPane.ERROR_MESSAGE);
-                        return;
-                    }
-
-                    Contacto nuevo = new Contacto(nombre, telefono, email);
-                    agenda.agregarContacto(nuevo);
-                    JOptionPane.showMessageDialog(frame, "Contacto agregado con éxito.");
+                // Si el email es nulo o vacío, se guarda como una cadena vacía
+                if (email == null || email.isEmpty()) {
+                    email = "";
+                } else if (!email.matches("^[\\w-\\.]+@[\\w-]+(\\.[\\w-]{2,4})+$")) {
+                    JOptionPane.showMessageDialog(frame, "Email inválido.", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
                 }
+
+                Contacto nuevo = new Contacto(nombre, telefono, email);
+                agenda.agregarContacto(nuevo);
+                JOptionPane.showMessageDialog(frame, "Contacto agregado con éxito.");
             }
         }
     }
@@ -240,41 +241,60 @@ public class ContactApp {
 
 
     private static void actualizarContacto(JFrame frame) {
-        Icon actualizarIcono = UIManager.getIcon("OptionPane.informationIcon"); // Icono para actualizar
+        Icon actualizarIcono = UIManager.getIcon("OptionPane.informationIcon");
         String nombre = (String) JOptionPane.showInputDialog(
                 frame,
                 "Ingrese el nombre del contacto a actualizar:",
                 "Actualizar Contacto",
                 JOptionPane.PLAIN_MESSAGE,
-                actualizarIcono, // Icono aquí
+                actualizarIcono,
                 null,
                 null
         );
 
         if (nombre != null) {
-            String nuevoTelefono = (String) JOptionPane.showInputDialog(
-                    frame,
-                    "Ingrese el nuevo teléfono:",
-                    "Actualizar - Teléfono",
-                    JOptionPane.PLAIN_MESSAGE,
-                    actualizarIcono,
-                    null,
-                    null
-            );
+            Contacto contacto = agenda.buscarContacto(nombre);
+            if (contacto != null) {
+                String nuevoTelefono = (String) JOptionPane.showInputDialog(
+                        frame,
+                        "Ingrese el nuevo teléfono:",
+                        "Actualizar - Teléfono",
+                        JOptionPane.PLAIN_MESSAGE,
+                        actualizarIcono,
+                        null,
+                        null
+                );
 
-            String nuevoEmail = (String) JOptionPane.showInputDialog(
-                    frame,
-                    "Ingrese el nuevo email:",
-                    "Actualizar - Email",
-                    JOptionPane.PLAIN_MESSAGE,
-                    actualizarIcono,
-                    null,
-                    null
-            );
+                if (nuevoTelefono != null && !nuevoTelefono.matches("\\d{7,15}")) {
+                    JOptionPane.showMessageDialog(frame, "Número de teléfono inválido. Debe contener entre 7 y 15 dígitos.", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
 
-            if (nuevoTelefono != null && nuevoEmail != null) {
-                agenda.actualizarContacto(nombre, nuevoTelefono, nuevoEmail);
+                String nuevoEmail = (String) JOptionPane.showInputDialog(
+                        frame,
+                        "Ingrese el nuevo email (deje en blanco para mantener el actual):",
+                        "Actualizar - Email",
+                        JOptionPane.PLAIN_MESSAGE,
+                        actualizarIcono,
+                        null,
+                        null
+                );
+
+                if (nuevoEmail != null && !nuevoEmail.isEmpty() && !nuevoEmail.matches("^[\\w-\\.]+@[\\w-]+(\\.[\\w-]{2,4})+$")) {
+                    JOptionPane.showMessageDialog(frame, "Email inválido.", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                if (nuevoTelefono != null) {
+                    contacto.setTelefono(nuevoTelefono);
+                }
+                if (nuevoEmail != null && !nuevoEmail.isEmpty()) {
+                    contacto.setEmail(nuevoEmail);
+                }
+                agenda.actualizarContacto(nombre, contacto.getTelefono(), contacto.getEmail());
                 JOptionPane.showMessageDialog(frame, "Contacto actualizado con éxito.", "Actualizar Contacto", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(frame, "Contacto no encontrado.", "Actualizar Contacto", JOptionPane.WARNING_MESSAGE);
             }
         }
     }
