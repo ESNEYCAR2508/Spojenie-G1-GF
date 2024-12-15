@@ -24,11 +24,12 @@ public class ContactApp {
         fondo.add(layeredPane, BorderLayout.CENTER);
 
         // Crear botones adicionales
-        JButton importarButton = new JButton("Importar");
-        JButton exportarButton = new JButton("Exportar");
+        // Crear botones adicionales con la forma de hoja
+        HojaButton importarButton = new HojaButton("Importar");
+        HojaButton exportarButton = new HojaButton("Exportar");
 
-        importarButton.setBounds(950, 100, 150, 50); // Posicionados en la parte inferior
-        exportarButton.setBounds(950, 600, 150, 50);
+        importarButton.setBounds(950, 100, 160, 160); // Posicionados en la parte inferior
+        exportarButton.setBounds(950, 500, 160, 160);
 
         importarButton.addActionListener(e -> {
             JFileChooser fileChooser = new JFileChooser();
