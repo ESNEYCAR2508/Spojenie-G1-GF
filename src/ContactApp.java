@@ -161,60 +161,177 @@ public class ContactApp {
 
     // Métodos para las acciones de cada botón
     private static void agregarContacto(JFrame frame) {
-        String nombre = JOptionPane.showInputDialog(frame, "Ingrese el nombre del contacto:");
-        String telefono = JOptionPane.showInputDialog(frame, "Ingrese el teléfono del contacto:");
-        String email = JOptionPane.showInputDialog(frame, "Ingrese el email del contacto:");
+        // Usar iconos predeterminados de Java Swing
+        Icon nombreIcono = UIManager.getIcon("OptionPane.questionIcon");
+        Icon telefonoIcono = UIManager.getIcon("OptionPane.informationIcon");
+        Icon emailIcono = UIManager.getIcon("OptionPane.warningIcon");
 
-        if (nombre != null && telefono != null && email != null) {
-            Contacto nuevo = new Contacto(nombre, telefono, email);
-            agenda.agregarContacto(nuevo);
+        // Pedir el nombre
+        String nombre = (String) JOptionPane.showInputDialog(
+                frame,
+                "Ingrese el nombre del contacto:",
+                "Agregar - Nombre",
+                JOptionPane.PLAIN_MESSAGE,
+                nombreIcono, // Icono aquí
+                null,
+                null
+        );
+
+        if (nombre != null) {
+            // Pedir el teléfono
+            String telefono = (String) JOptionPane.showInputDialog(
+                    frame,
+                    "Ingrese el teléfono del contacto:",
+                    "Agregar - Teléfono",
+                    JOptionPane.PLAIN_MESSAGE,
+                    telefonoIcono, // Icono aquí
+                    null,
+                    null
+            );
+
+            if (telefono != null) {
+                // Pedir el email
+                String email = (String) JOptionPane.showInputDialog(
+                        frame,
+                        "Ingrese el email del contacto:",
+                        "Agregar - Email",
+                        JOptionPane.PLAIN_MESSAGE,
+                        emailIcono, // Icono aquí
+                        null,
+                        null
+                );
+
+                // Validar que todos los campos sean completados
+                if (email != null) {
+                    Contacto nuevo = new Contacto(nombre, telefono, email);
+                    agenda.agregarContacto(nuevo);
+                    JOptionPane.showMessageDialog(frame, "Contacto agregado con éxito.");
+                }
+            }
         }
     }
 
     private static void buscarContacto(JFrame frame) {
-        String nombre = JOptionPane.showInputDialog(frame, "Ingrese el nombre del contacto a buscar:");
+        Icon buscarIcono = UIManager.getIcon("OptionPane.searchIcon"); // Icono para buscar
+        String nombre = (String) JOptionPane.showInputDialog(
+                frame,
+                "Ingrese el nombre del contacto a buscar:",
+                "Buscar Contacto",
+                JOptionPane.PLAIN_MESSAGE,
+                buscarIcono, // Icono aquí
+                null,
+                null
+        );
+
         if (nombre != null) {
             Contacto contacto = agenda.buscarContacto(nombre);
             if (contacto != null) {
-                JOptionPane.showMessageDialog(frame, contacto.toString());
+                JOptionPane.showMessageDialog(frame, contacto.toString(), "Resultado de Búsqueda", JOptionPane.INFORMATION_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(frame, "Contacto no encontrado.");
+                JOptionPane.showMessageDialog(frame, "Contacto no encontrado.", "Buscar Contacto", JOptionPane.WARNING_MESSAGE);
             }
         }
     }
+
 
     private static void actualizarContacto(JFrame frame) {
-        String nombre = JOptionPane.showInputDialog(frame, "Ingrese el nombre del contacto a actualizar:");
+        Icon actualizarIcono = UIManager.getIcon("OptionPane.informationIcon"); // Icono para actualizar
+        String nombre = (String) JOptionPane.showInputDialog(
+                frame,
+                "Ingrese el nombre del contacto a actualizar:",
+                "Actualizar Contacto",
+                JOptionPane.PLAIN_MESSAGE,
+                actualizarIcono, // Icono aquí
+                null,
+                null
+        );
+
         if (nombre != null) {
-            String nuevoTelefono = JOptionPane.showInputDialog(frame, "Ingrese el nuevo teléfono:");
-            String nuevoEmail = JOptionPane.showInputDialog(frame, "Ingrese el nuevo email:");
+            String nuevoTelefono = (String) JOptionPane.showInputDialog(
+                    frame,
+                    "Ingrese el nuevo teléfono:",
+                    "Actualizar - Teléfono",
+                    JOptionPane.PLAIN_MESSAGE,
+                    actualizarIcono,
+                    null,
+                    null
+            );
+
+            String nuevoEmail = (String) JOptionPane.showInputDialog(
+                    frame,
+                    "Ingrese el nuevo email:",
+                    "Actualizar - Email",
+                    JOptionPane.PLAIN_MESSAGE,
+                    actualizarIcono,
+                    null,
+                    null
+            );
+
             if (nuevoTelefono != null && nuevoEmail != null) {
                 agenda.actualizarContacto(nombre, nuevoTelefono, nuevoEmail);
+                JOptionPane.showMessageDialog(frame, "Contacto actualizado con éxito.", "Actualizar Contacto", JOptionPane.INFORMATION_MESSAGE);
             }
         }
     }
 
+
     private static void listarContactos(JFrame frame) {
+        Icon listaIcono = UIManager.getIcon("OptionPane.informationIcon"); // Icono para lista
         StringBuilder lista = new StringBuilder("Contactos:\n");
         for (Contacto contacto : agenda.getContactos()) {
             lista.append(contacto.toString()).append("\n");
         }
+
         if (lista.toString().equals("Contactos:\n")) {
-            JOptionPane.showMessageDialog(frame, "No hay contactos en la agenda.");
+            JOptionPane.showMessageDialog(frame, "No hay contactos en la agenda.", "Lista de Contactos", JOptionPane.INFORMATION_MESSAGE, listaIcono);
         } else {
-            JOptionPane.showMessageDialog(frame, lista.toString());
+            JOptionPane.showMessageDialog(frame, lista.toString(), "Lista de Contactos", JOptionPane.INFORMATION_MESSAGE, listaIcono);
         }
     }
+
 
     private static void eliminarContacto(JFrame frame) {
-        String nombre = JOptionPane.showInputDialog(frame, "Ingrese el nombre del contacto a eliminar:");
+        // Configurar icono de advertencia predeterminado de Swing
+        Icon iconoWarning = UIManager.getIcon("OptionPane.warningIcon");
+
+        // Mostrar cuadro de diálogo personalizado
+        String nombre = (String) JOptionPane.showInputDialog(
+                frame,                               // Componente padre
+                "Ingrese el nombre del contacto a eliminar:", // Mensaje
+                "Eliminar Contacto",                 // Título
+                JOptionPane.WARNING_MESSAGE,         // Tipo de mensaje con icono predeterminado
+                iconoWarning,                        // Icono de advertencia predeterminado
+                null,                                // Opciones disponibles (null permite input)
+                null                                 // Valor inicial
+        );
+
+        // Lógica de eliminación del contacto
         if (nombre != null) {
-            agenda.eliminarContacto(nombre);
+            Contacto contacto = agenda.buscarContacto(nombre);
+            if (contacto != null) {
+                agenda.eliminarContacto(nombre);
+                // Mostrar mensaje de confirmación si se eliminó correctamente
+                JOptionPane.showMessageDialog(
+                        frame,
+                        "El contacto \"" + nombre + "\" fue eliminado correctamente.",
+                        "Eliminar Contacto",
+                        JOptionPane.INFORMATION_MESSAGE
+                );
+            } else {
+                // Mostrar mensaje si no se encuentra el contacto
+                JOptionPane.showMessageDialog(
+                        frame,
+                        "No se encontró un contacto con ese nombre.",
+                        "Eliminar Contacto",
+                        JOptionPane.WARNING_MESSAGE
+                );
+            }
         }
     }
 
+
     private static void mostrarFichaTecnica(JFrame frame) {
-        JOptionPane.showMessageDialog(frame, "\uD83D\uDC69\u200D\uD83D\uDCBB Natalia Ni\u00f1o\n" +
+        JOptionPane.showMessageDialog(frame, "\uD83D\uDC69\u200D\uD83D\uDCBB Natalia Niño\n" +
                 "\uD83D\uDC68\u200D\uD83D\uDCBB Bryant Cardoza\n" +
                 "\uD83D\uDC68\u200D\uD83D\uDCBB Jhoan Araque Jaimes\n" +
                 "\uD83D\uDC68\u200D\uD83D\uDCBB Deyson Carrillo\n" +
